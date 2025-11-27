@@ -1,5 +1,3 @@
-# Increasing triangle pattern with 2 multiplication table numbers
-
 rows = int(input("Enter number of rows: "))
 num = 2  # start from 2
 
