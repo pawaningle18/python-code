@@ -1,0 +1,46 @@
+# Currency Converter using Tkinter
+
+import tkinter as tk
+from tkinter import messagebox
+
+rates = {
+    "INR": 1,
+    "USD": 83,
+    "EUR": 90,
+    "GBP": 105
+}
+
+def convert():
+    try:
+        amount = float(entry_amount.get())
+        from_currency = from_var.get()
+        to_currency = to_var.get()
+        result = amount * rates[from_currency] / rates[to_currency]
+        label_result.config(text="Converted Amount: " + str(round(result, 2)))
+    except:
+        messagebox.showerror("Error", "Invalid Input")
+
+window = tk.Tk()
+window.title("Currency Converter")
+window.geometry("350x300")
+
+tk.Label(window, text="Currency Converter", font=("Arial", 14)).pack(pady=10)
+tk.Label(window, text="Enter Amount").pack()
+entry_amount = tk.Entry(window)
+entry_amount.pack()
+
+tk.Label(window, text="From Currency").pack()
+from_var = tk.StringVar(window)
+from_var.set("INR")
+tk.OptionMenu(window, from_var, *rates.keys()).pack()
+
+tk.Label(window, text="To Currency").pack()
+to_var = tk.StringVar(window)
+to_var.set("USD")
+tk.OptionMenu(window, to_var, *rates.keys()).pack()
+
+tk.Button(window, text="Convert", command=convert).pack(pady=10)
+label_result = tk.Label(window, text="Converted Amount:")
+label_result.pack()
+
+window.mainloop()
